@@ -23,7 +23,6 @@
         this.timer = null;
         this.init();
     }
-
     Tab.prototype = {
         constructor: Tab,
         init: function () {
@@ -59,18 +58,34 @@
             })
         },
         bind: function () {
-            //遍历数据：$.each(对象,callback);
-            var strDiv = '';
-            var strLi = '';
-            $.each(this.data, function (index, item) {
-                strDiv += '<div><img src="" realImg="' + item.imgSrc + '" alt=""></div>';
-                strLi += index == 0 ? '<li class="on"></li>' : '<li></li>';
-            });
-            this.$boxInner.html(strDiv);
-            this.$ul.html(strLi);
-            this.$aDiv = this.$boxInner.children('div');
-            this.$aImg = this.$boxInner.find('img');
-            this.$aLi = this.$ul.children('li');
+            if(window.navigator.userAgent.indexOf('MSIE')>=0){
+                //遍历数据：$.each(对象,callback);
+                var strDiv = '';
+                var strLi = '';
+                $.each(this.data, function (index, item) {
+                    strDiv += '<div><img src="" realImg="' + item.imgSrc + '" alt=""></div>';
+                    strLi += index == 0 ? '<li class="on1"></li>' : '<li></li>';
+                });
+                this.$boxInner.html(strDiv);
+                this.$ul.html(strLi);
+                this.$aDiv = this.$boxInner.children('div');
+                this.$aImg = this.$boxInner.find('img');
+                this.$aLi = this.$ul.children('li');
+            }else {
+                //遍历数据：$.each(对象,callback);
+                var strDiv = '';
+                var strLi = '';
+                $.each(this.data, function (index, item) {
+                    strDiv += '<div><img src="" realImg="' + item.imgSrc + '" alt=""></div>';
+                    strLi += index == 0 ? '<li class="on"></li>' : '<li></li>';
+                });
+                this.$boxInner.html(strDiv);
+                this.$ul.html(strLi);
+                this.$aDiv = this.$boxInner.children('div');
+                this.$aImg = this.$boxInner.find('img');
+                this.$aLi = this.$ul.children('li');
+            }
+
         },
         lazyImg: function () {
             var _this = this;
@@ -107,7 +122,12 @@
         bannerTip: function () {
             var _this = this;
             $.each(this.$aLi, function (index, item) {
-                item.className = index == _this.n ? 'on' : null;
+                if(window.navigator.userAgent.indexOf('MSIE')>=0){
+                    item.className = index == _this.n ? 'on1' : null;
+                }else {
+                    item.className = index == _this.n ? 'on' : null;
+                }
+
                 /*if(index==_this.n){
                  $(item).addClass('on');
                  }else{
@@ -129,11 +149,9 @@
         },
         handleChange: function () {
             var _this = this;
-            this.$aLi.mouseover(function () {
+            this.$aLi.click(function () {
                 _this.n = $(this).index();
-
                 _this.setBanner();
-
             });
         }
     };
@@ -273,7 +291,7 @@
     $(function () {
         $("img").delayLoading({
             defaultImg: "img/140.png",   // 预加载前显示的图片
-            errorImg: "",   // 读取图片错误时替换图片(默认：与defaultImg一样)
+            errorImg: "img/140.png",   // 读取图片错误时替换图片(默认：与defaultImg一样)
             imgSrcAttr: "originalSrc",//记录图片路径的属性(默认：originalSrc，页面img的src属性也要替换为originalSrc)
             beforehand: 0,  // 预先提前多少像素加载图片(默认：0)
             event: "scroll", // 触发加载图片事件(默认：scroll)

@@ -26,7 +26,6 @@ b,strong{
     clear: both;
 }
 .clearfix{zoom:1}
-
 img{
     border: none;
 }
@@ -423,15 +422,18 @@ section{
     float: left;
     padding: 0;
     border-radius: 100%;
+    cursor: pointer;
 }
 .headerCon .div1 ul li.on{
     background: #ff3366;
     background: url("../img/o61vu_ieydoyjzhe2wim3gmiytambqmeyde_201x53.png") no-repeat -160px -20px;
     -webkit-animation: rotate 4000ms cubic-bezier(0.6, 0, 0.6, 1) 1;
     -moz-animation: rotate 4000ms cubic-bezier(0.6, 0, 0.6, 1) 1;
-    -ms-animation:rotate 4000ms cubic-bezier(0.6, 0, 0.6, 1) 1;
     -o-animation: rotate 4000ms cubic-bezier(0.6, 0, 0.6, 1) 1;
     animation: rotate 4000ms cubic-bezier(0.6, 0, 0.6, 1) 1;
+}
+.headerCon .div1 ul li.on1{
+    background: #ff3366;
 }
 @keyframes rotate {
     0%{
@@ -1298,4 +1300,3 @@ section{
 .footer_wrap ul li a:hover{
     text-decoration: underline;
 }
-
